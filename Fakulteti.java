@@ -1,35 +1,15 @@
-/*
-1.4.Krijoni klasën Fakulteti që ka atributin drejtimi, dhe përmban një varg ku do të ruhen si profesorë
-ashtu edhe asistentë.
-a) Ofroni konstruktorin e kësaj klase, i cili pranon drejtimin si dhe numrin e mësimdhënësve të
-fakultetit.
-b) Ofroni metodën ekziston e cila tregon nëse në mësimdhënës jep mësim në fakultet.
-Mësimdhënësi ti dërgohet metodës si parametër.
-c) Ofroni metodën shtoMesimdhenesin që e shton një mësimdhënës në varg nëse ai veç se nuk
-ekziston dhe ka vend në varg.
-d) Ofroni metodën profesoriMeIRi që e kthen profesorin e parë më të ri në fakultet.
-e) Ofroni metodën shtypLlojinEUshtrimeve që i shtyp / afishon asistentët që kanë mbajnë
-ushtrime të një lloji të caktuar. Lloji i ushtrimeve ti dërgohet metodës si parametër.
-f) Ofroni metodën main ku do të krijohet një instancë e klasës Fakulteti me drejtim “Shkenca
-Kompjuterike”, me mundësi të ruajtjes së 15 mësimdhënësve dhe shtoni disa profesorë dhe
-disa asistentë.
-g) Të testohen metodat ekziston, profesoriMeIRi dhe shtypLlojinEUshtrimeve.
- */
 
-/*1.4.Krijoni klasën Fakulteti që ka atributin drejtimi, dhe përmban një varg ku do të ruhen si profesorë
-      ashtu edhe asistentë.*/
 public class Fakulteti {
     private String drejtimi;
     public Mesimdhenesi [] vargu;
     public int index=0;
 
-//a) Ofroni konstruktorin e kësaj klase, i cili pranon drejtimin si dhe numrin e mësimdhënësve të fakultetit.
+
     public Fakulteti(String d,int kapacitetivargut){
         drejtimi=d;
         vargu = new Mesimdhenesi[kapacitetivargut];
     }
-/* b) Ofroni metodën ekziston e cila tregon nëse në mësimdhënës jep mësim në fakultet.
-     Mësimdhënësi ti dërgohet metodës si parametër. */
+
     public boolean ekziston(Mesimdhenesi m){
         for(int i=0; i<index; i++){
             if(vargu[i].equals(m)){
@@ -39,8 +19,7 @@ public class Fakulteti {
         return false;
     }
 
-/* c) Ofroni metodën shtoMesimdhenesin që e shton një mësimdhënës në varg nëse ai veç se nuk
-ekziston dhe ka vend në varg.   */
+
     public void shtoMesimdhenesin(Mesimdhenesi m){
         if(m == null){
             System.out.println("Objekti eshte null");
@@ -57,7 +36,6 @@ ekziston dhe ka vend në varg.   */
         vargu[index++] = m;
     }
 
-//d) Ofroni metodën profesoriMeIRi që e kthen profesorin e parë më të ri në fakultet.
     public Profesori profesoriMeiRi(){
         if(index == 0){
         System.out.println("Nuk ka asnje mesimdhenes ne varg");
@@ -67,9 +45,7 @@ ekziston dhe ka vend në varg.   */
         for(int i = 0; i < index; i++){
             if(vargu[i] instanceof Profesori){
 
-                //2000 < 2001
-                //meiRi = "Avdi", 2000 (21)
-                //vargu[i] = "Endi",2001 (20)
+              
                 if(meiRi == null || meiRi.getVitiLindjes() < vargu[i].getVitiLindjes()){
                     meiRi = (Profesori)vargu[i];
                 }
@@ -93,8 +69,8 @@ ushtrime të një lloji të caktuar. Lloji i ushtrimeve ti dërgohet metodës si
         }
         for(int i =0; i < index; i++){
             if(vargu[i] instanceof Asistenti){
-                //	if(vargu[i].getLlojiUshtrimeve())
-                // error (sepse vargu eshte mesimdhenes dhe nuk ka casje ne metodat e asistentit)
+                
+                  
                 Asistenti a = (Asistenti)vargu[i];
                 if(a.getLlojiUshtrimeve().equals(llu)){
                     System.out.println(a);
@@ -104,9 +80,8 @@ ushtrime të një lloji të caktuar. Lloji i ushtrimeve ti dërgohet metodës si
 
     }
 
-/* f) Ofroni metodën main ku do të krijohet një instancë e klasës Fakulteti me drejtim “Shkenca
-Kompjuterike”, me mundësi të ruajtjes së 15 mësimdhënësve dhe shtoni disa profesorë dhe
-disa asistentë. */
+
+      
 
     public static void main(String[] args) {
         Fakulteti f = new Fakulteti("Shkenca Kompjuterike", 15);
@@ -126,7 +101,8 @@ disa asistentë. */
         f.shtoMesimdhenesin(a2);
         f.shtoMesimdhenesin(a3);
 
-//  g) Të testohen metodat ekziston, profesoriMeIRi dhe shtypLlojinEUshtrimeve
+
+          
 
         Profesori iRi = f.profesoriMeiRi();
         System.out.println("profesori me i ri : " + iRi);
